@@ -24,12 +24,12 @@
   
   .header-links a {
     text-decoration: none;
-    color: #fff;
+    color: #5f0505;
   }
   
   .header-user .login-button, .header-user .signup-button {
     background-color: black;
-    color: #333;
+    color:silver;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
@@ -37,6 +37,6 @@
   }
   
   .header-user .login-button:hover, .header-user .signup-button:hover {
-    background-color: red;
+    background-color: maroon;
   }
   
