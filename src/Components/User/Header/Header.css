@@ -27,7 +27,8 @@
     color: #5f0505;
   }
   
-  .header-user .login-button, .header-user .signup-button {
+  .header-user .login-button, .header-user .signup-button
+   {
     background-color: black;
     color:silver;
     border: none;

@@ -1,4 +1,10 @@
-
+.login-page{
+    position: absolute;
+    top: 15vh;
+    left: 90vh;
+        align-items: center;
+    justify-content: center;
+}
 
 .login {
     background-color: #fff;
@@ -17,7 +23,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 250px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 2px;
