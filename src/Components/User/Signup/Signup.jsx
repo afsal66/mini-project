@@ -6,7 +6,7 @@ function Signup() {
     
 
   <div class="container">
-    <h2>Sign Up</h2>
+    <h1>Create Your Account</h1>
     <form id="signup-form">
       <div class="form-group">
         <label for="username">Username:</label>
@@ -19,8 +19,11 @@ function Signup() {
       <div class="form-group">
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required/>
+        <label for="password">Conform Password:</label>
+        <input type="password" id="password" name="password" required/>
       </div>
-      <button type="submit">Sign Up</button>
+      <button type="submit">Sign Up</button><br/><br/>
+      <button type="submit">login</button>
     </form>
     <div id="message"></div>
   </div>

@@ -1,0 +1,15 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.img{
+    display: flex;
+    flex-direction: row;
+}
+
+.img img{
+    max-width: 70vw;
+    max-height: 50vw;
+}

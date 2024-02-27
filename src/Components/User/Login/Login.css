@@ -1,7 +1,5 @@
 .login-page{
-    position: absolute;
-    top: 15vh;
-    left: 90vh;
+    display: flex;
         align-items: center;
     justify-content: center;
 }
@@ -29,7 +27,7 @@ input {
     border-radius: 2px;
 }
 
-button {
+.login button {
     padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
