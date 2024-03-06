@@ -1,0 +1,12 @@
+.productpage{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: auto auto auto auto;
+    row-gap: 25px;
+    column-gap: 10px;
+}
+@media only screen and(max-width:750px){
+    .productpage{
+        grid-template-columns: auto;
+    }
+}

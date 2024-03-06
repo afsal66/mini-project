@@ -1,4 +1,4 @@
-.login-page{
+/* .login-page{
     display: flex;
         align-items: center;
     justify-content: center;
@@ -38,4 +38,35 @@ input {
 
 button:hover {
     background-color: #0056b3;
-}
+} */
+.login-page{
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .header{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: auto;
+  }
+  .login-mail{
+    margin-bottom: 20px;
+  }
+  .login-pass{
+    margin-bottom: 20px;
+  }
+  .login-button {
+    padding: 10px 20px;
+    background-color: darkblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #a9c1da;
+  }

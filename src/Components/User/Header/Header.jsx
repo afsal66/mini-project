@@ -1,8 +1,13 @@
 import React from 'react';
 import "./Header.css";
+import {Link, useNavigate} from 'react-router-dom';
 //import {useHistory} from 'react-router-dom';
 
 function Header() {
+
+  const navigate = useNavigate();
+  const handleClickLogin = () => navigate("/login");
+  const handleClickSignup = () => navigate("/signup");
   // const history = useHistory();
 
   // const handleLogin = () => {
@@ -14,15 +19,15 @@ function Header() {
       <h1>ZaC's MeN</h1>
       <div className='header-links'>
         <ul>
-          <li><a href='#'>New Arrivals</a></li>
-          <li><a href='#'>Brand Collection</a></li>
-          <li><a href='#'>Kids Collection</a></li>
-          <li><a href='#'>Special Offers</a></li>
+          <li><Link to='/newarrivals'>New Arrivals</Link></li>
+          <li><Link to='/mens'>Mens Fashion</Link></li>
+          <li><Link to='/Kids'>Kids Collection</Link></li>
+          {/* <li><Link to='#'>Special Offer</Link></li> */}
         </ul> 
       </div>
       <div className='header-user'>
-        <button className='login-button' >Login</button>
-        <button className='signup-button'>Sign Up</button>
+        <button className='login-button' onClick={handleClickLogin}>Login</button>
+        <button className='signup-button'onClick={handleClickSignup}>Sign Up</button>
       </div>
     </div>
   );
