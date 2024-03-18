@@ -40,6 +40,8 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import "./Signup.css";
+import { signup } from '../../../Services/UserApi';
+
 const SignupForm = () => {
   // Initial values for the form fields
   const initialValues = {
@@ -76,10 +78,11 @@ const SignupForm = () => {
   };
 
   // Submit function for handling form submission
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async(values ) => {
     // Here you can implement your signup logic, e.g., sending a request to your backend API
     console.log('Submitted values:', values);
-    setSubmitting(false);
+
+    const {data}= await signup(values)
   };
 
   return (

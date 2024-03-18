@@ -1,0 +1,49 @@
+.header {
+    background-color: silver;
+    
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .header h1 {
+    margin: 0px 20px;
+    float: left;
+    left: -190px;
+    position: relative;
+}
+  
+  .header-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .header-links li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .header-links a {
+    text-decoration: none;
+    color: #5f0505;
+  }
+  
+  .header-user .login-button, .header-user .signup-button
+   {
+    background-color: black;
+    color:silver;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .header-user .login-button:hover, .header-user .signup-button:hover {
+    background-color: maroon;
+  }
+  .header-user{
+    right:-15em;
+    position: relative;
+  }

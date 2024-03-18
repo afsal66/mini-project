@@ -37,13 +37,13 @@
     border: none;
     padding: 8px 16px;
     cursor: pointer;
-    margin-left: 10px;
+    margin-left: 4px;
   }
   
   .header-user .login-button:hover, .header-user .signup-button:hover {
     background-color: maroon;
   }
   .header-user{
-    right:-15em;
+    right:-4em;
     position: relative;
   }

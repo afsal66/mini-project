@@ -1,0 +1,49 @@
+/* UserList.css */
+
+.adminHome {
+    margin: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .userListTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .userListTable th,
+  .userListTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .userListTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .userListTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .userListTable tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  .block-btn {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

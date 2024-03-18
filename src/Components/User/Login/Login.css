@@ -42,9 +42,11 @@ button:hover {
 .login-page{
     max-width: 400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 75px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: silver;
+    color: white;
   }
   
   .header{
@@ -52,6 +54,7 @@ button:hover {
     text-align: center;
     justify-content: center;
     margin-top: auto;
+    color: black;
   }
   .login-mail{
     margin-bottom: 20px;
