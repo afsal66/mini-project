@@ -1,78 +1,92 @@
-// import React from 'react'
+
+
+// import React, { useState } from 'react';
 // import "./Login.css";
 
-// function Login() {
+// const LoginForm = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     console.log('Email:', email);
+//     console.log('Password:', password);
+//     setEmail('');
+//     setPassword('');
+//   };
+
 //   return (
 //     <div  className="login-page">
-//     <div class="login">
-//         <h2>Login</h2>
-//         <form id="user">
-//             <div class="user">
-//                 <label for="username">Username:</label>
-//                 <input type="text" id="username" name="username" required/>
-//             </div>
-//             <div class="user">
-//                 <label for="password">Password:</label>
-//                 <input type="password" id="password" name="password" required/>
-//             </div>
-//             <button className='login button' type="submit">Login</button>
-//         </form>
-//     </div>
-
-    
-
-
+//       <h2 className='header'>Login Form</h2>
+//       <form onSubmit={handleSubmit}>
+//         <div className='login-mail'>
+//           <label>Email:</label>
+//           <input
+//             type="email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             required
+//           />
+//         </div>
+//         <div className='login-pass'>
+//           <label>Password:</label>
+//           <input
+//             type="password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             required
+//           />
+//         </div >
+//         <button className='login-button' type="submit">Login</button>
+//       </form>
 //     </div>
 //   );
-// }
+// };
 
-// export default Login
+// export default LoginForm;
 
-import React, { useState } from 'react';
-import "./Login.css";
 
-const LoginForm = () => {
-  // State to manage user input for email and password
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-  // Function to handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can implement logic to authenticate user using email and password
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Reset the form fields after submission
-    setEmail('');
-    setPassword('');
-  };
-
+const Login = () => {
   return (
-    <div  className="login-page">
-      <h2 className='header'>Login Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='login-mail'>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className='login-pass'>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div >
-        <button className='login-button' type="submit">Login</button>
-      </form>
+    <div className="login-container">
+      <h1>Login</h1>
+      <Formik
+        initialValues={{ email: '', password: '' }}
+        validationSchema={Yup.object().shape({
+          email: Yup.string().email('Invalid email').required('Email is required'),
+          password: Yup.string().required('Password is required')
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className="login-form">
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <Field type="email" name="email" className="form-control" />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <Field type="password" name="password" className="form-control" />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <button type="submit" disabled={isSubmitting} className="submit-button">
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
 
-export default LoginForm;
+export default Login;

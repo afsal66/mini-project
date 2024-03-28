@@ -10,6 +10,8 @@ const ProductList = () => {
       category: 'Shirts',
       price: 29.99,
       description: 'Comfortable cotton shirt for men.',
+      image:'C:\softronics\Mini-Project\frontend\src\Assets\img1.jpg'
+      
       
     },
     {

@@ -15,7 +15,7 @@ function Header() {
   //   history.push('/login');
   
   return (
-    <div className='header'>
+    <div className='headeradmin'>
       <h1>ZaC's MeN</h1>
       <div className='header-links'>
         <ul>

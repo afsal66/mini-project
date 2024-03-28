@@ -1,133 +1,156 @@
-// import React from 'react'
-// import "./Signup.css";
-
-// function Signup() {
-//   return (
-    
-
-//   <div class="container">
-//     <h1>Create Your Account</h1>
-//     <form id="signup-form">
-//       <div class="form-group">
-//         <label for="username">Username:</label>
-//         <input type="text" id="username" name="username" required/>
-//       </div>
-//       <div class="form-group">
-//         <label for="email">Email:</label>
-//         <input type="email" id="email" name="email" required/>
-//       </div>
-//       <div class="form-group">
-//         <label for="password">Password:</label>
-//         <input type="password" id="password" name="password" required/>
-//         <label for="password">Conform Password:</label>
-//         <input type="password" id="password" name="password" required/>
-//       </div>
-//       <button type="submit">Sign Up</button><br/><br/>
-//       <button type="submit">login</button>
-//     </form>
-//     <div id="message"></div>
-//   </div>
-  
-  
-
-
-    
-//   )
-// }
-
-// export default Signup
-
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import React from "react";
 import "./Signup.css";
-import { signup } from '../../../Services/UserApi';
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import {signup}from'../../../Services/UserApi';
+function SignUp() {
 
-const SignupForm = () => {
-  // Initial values for the form fields
   const initialValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   };
 
-  // Validation function for form fields
-  const validate = (values) => {
-    const errors = {};
-    if (!values.firstName) {
-      errors.firstName = 'Required';
-    }
-    if (!values.lastName) {
-      errors.lastName = 'Required';
-    }
-    if (!values.email) {
-      errors.email = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
-    }
-    if (!values.password) {
-      errors.password = 'Required';
-    }
-    if (!values.confirmPassword) {
-      errors.confirmPassword = 'Required';
-    } else if (values.confirmPassword !== values.password) {
-      errors.confirmPassword = 'Passwords do not match';
-    }
-    return errors;
-  };
 
-  // Submit function for handling form submission
-  const handleSubmit = async(values ) => {
-    // Here you can implement your signup logic, e.g., sending a request to your backend API
-    console.log('Submitted values:', values);
+  const validationSchema = Yup.object().shape({
+    username: Yup.string().required("Username is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters long")
+      .required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), null], "Passwords must match")
+      .required("Confirm Password is required"),
+  });
 
-    const {data}= await signup(values)
-  };
+  const onSubmit = async (values) => {
+    console.log(values);
+
+    const {data} = await signup(values);
+  }
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
+
+  
 
   return (
-    <div className='signup'>
-      <h2 className='header2'>Create Your Account</h2>
-      <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <div className='form-name'>
-              <label>First Name:</label>
-              <Field type="text" name="firstName" />
-              <ErrorMessage name="firstName" component="div" className="error" />
-            </div>
-            <div className='form-name'>
-              <label>Last Name:</label>
-              <Field type="text" name="lastName" />
-              <ErrorMessage name="lastName" component="div" className="error" />
-            </div>
-            <div className='form-mail'>
-              <label>Email:</label>
-              <Field type="email" name="email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
-            <div className='form-pass'>
-              <label>Password:</label>
-              <Field type="password" name="password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
-            <div className='form-pass'>
-              <label>Confirm Password:</label>
-              <Field type="password" name="confirmPassword" />
-              <ErrorMessage name="confirmPassword" component="div" className="error" />
-            </div>
-            <button className='button' type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Signup'}
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
+    <>
+      <div className="signup">
+        <div className="signup">
+            <form onSubmit={formik.handleSubmit}>
+              <h1>Create your Account</h1>
+              <p>Please enter your details.</p>
+              <div className="signupUserInput">
+                <div className="Username">
+                  <label htmlFor="name">Username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="signupName"
+                    className="signupInput"
+                    placeholder="Enter your name"
+                    value={formik.values.username}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.name && formik.errors.name && (
+                    <p
+                      className="error-message"
+                      style={{ marginTop: "5px", color: "red" }}
+                    >
+                      {formik.errors.username}
+                    </p>
+                  )}
+                </div>
+                <br />
+                <div className="Email">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="signupEmail"
+                    className="signupInput"
+                    placeholder="Enter your email address"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <p
+                      className="error-message"
+                      style={{ marginTop: "5px", color: "red" }}
+                    >
+                      {formik.errors.email}
+                    </p>
+                  )}
+                </div>
+                <br />
+                <div className="Password">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="signupPassword"
+                    className="signupInput"
+                    placeholder="Enter password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.password && formik.errors.password && (
+                    <p
+                      className="error-message"
+                      style={{ marginTop: "5px", color: "red" }}
+                    >
+                      {formik.errors.password}
+                    </p>
+                  )}
+                </div>
+                <br />
+                <div className="Password">
+                  <label htmlFor="confirmPassword">Confirm Password</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    className="signupInput"
+                    placeholder="Confirm your password"
+                    value={formik.values.confirmPassword}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                  {formik.touched.confirmPassword &&
+                    formik.errors.confirmPassword && (
+                      <p
+                        className="error-message"
+                        style={{ marginTop: "5px", color: "red" }}
+                      >
+                        {formik.errors.confirmPassword}
+                      </p>
+                    )}
+                </div>
+                <br />
+                <div className="signupbutton">
+                  <button type="submit">Sign Up</button>
+                </div>
+                <br />
+                
+                
+              </div>
+            </form>
+          </div>
 
-export default SignupForm;
+        </div>
+    </>
+  );
+}
+
+export default SignUp;
